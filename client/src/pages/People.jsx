@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Status from '../components/Status.jsx';
 import { Kicker, Page, Title } from '../components/ui.js';
 import { useApi } from '../hooks/useApi.js';
+import { publicUrl } from '../publicUrl.js';
 
 const LayoutGrid = styled.div`
   display: grid;
@@ -67,7 +68,10 @@ export default function People() {
       <Title>{person.personName}</Title>
       <LayoutGrid>
         <div>
-          <Portrait src={person.portrait} alt={person.portraitAlt} />
+          <Portrait
+            src={publicUrl(person.portrait)}
+            alt={person.portraitAlt}
+          />
           <Role>{person.role}</Role>
           <Muted>{person.unit}</Muted>
           <Muted>{person.university}</Muted>

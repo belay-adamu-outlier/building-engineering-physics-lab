@@ -1,14 +1,32 @@
 import { useEffect, useState } from 'react';
+import content from '../../../server/data/content.json';
+import { sectionFor } from '../staticContent.js';
 
-/** Load one JSON endpoint. */
+const hosted = import.meta.env.VITE_STATIC === 'true';
+
+function initialState(path) {
+  if (!hosted) {
+    return { status: 'loading', data: null, error: '' };
+  }
+  const data = sectionFor(content, path);
+  if (!data) {
+    return {
+      status: 'error',
+      data: null,
+      error: 'Could not load this page.',
+    };
+  }
+  return { status: 'ready', data, error: '' };
+}
+
+/** Load one JSON endpoint, or the bundled record on Pages. */
 export function useApi(path) {
-  const [state, setState] = useState({
-    status: 'loading',
-    data: null,
-    error: '',
-  });
+  const [state, setState] = useState(() => initialState(path));
 
   useEffect(() => {
+    if (hosted) {
+      return undefined;
+    }
     let active = true;
 
     fetch(path)

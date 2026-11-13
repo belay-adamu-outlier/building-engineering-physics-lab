@@ -23,3 +23,10 @@ They are not emailed.
 ## Edit content
 
 Change `server/data/content.json`, then refresh the browser.
+
+## GitHub Pages
+
+Pushes to `main` publish the client as a static page.
+That build has no API, so the contact form opens an
+email instead of saving a message. The local site
+still uses the server.

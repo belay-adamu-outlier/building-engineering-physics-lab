@@ -9,6 +9,9 @@ test('seed content has the lab profile and four themes', () => {
     'Building Engineering Physics Lab',
   );
   assert.equal(content.profile.email, 'fitsum_tariku@sfu.ca');
+  assert.ok(content.profile.portrait);
+  assert.ok(content.profile.hero);
+  assert.ok(content.profile.heroAlt);
   assert.equal(content.research.length, 4);
   content.research.forEach((theme) => {
     assert.ok(theme.teaser);

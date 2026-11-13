@@ -3,6 +3,19 @@ import styled from 'styled-components';
 import Status from '../components/Status.jsx';
 import { Kicker, Page, Title } from '../components/ui.js';
 import { useApi } from '../hooks/useApi.js';
+import { mailLink } from '../mailLink.js';
+
+const hosted = import.meta.env.VITE_STATIC === 'true';
+
+function buttonLabel(sending) {
+  if (sending) {
+    return 'Sending';
+  }
+  if (hosted) {
+    return 'Email the lab';
+  }
+  return 'Send message';
+}
 
 const empty = {
   name: '',
@@ -127,6 +140,16 @@ export default function Contact() {
     setErrors({});
 
     try {
+      if (form.company) {
+        setForm(empty);
+        setSent(true);
+        return;
+      }
+      if (hosted) {
+        window.location.href = mailLink(person.email, form);
+        setSent(true);
+        return;
+      }
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -225,10 +248,14 @@ export default function Contact() {
           </Trap>
           {errors.form ? <ErrorText>{errors.form}</ErrorText> : null}
           {sent ? (
-            <Success>Message saved. Thank you.</Success>
+            <Success>
+              {hosted
+                ? 'Your email app should open with this message.'
+                : 'Message saved. Thank you.'}
+            </Success>
           ) : null}
           <Button type="submit" disabled={sending}>
-            {sending ? 'Sending' : 'Send message'}
+            {buttonLabel(sending)}
           </Button>
         </Form>
       </Split>

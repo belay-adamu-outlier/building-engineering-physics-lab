@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Status from '../components/Status.jsx';
 import { Kicker, SectionTitle } from '../components/ui.js';
 import { useApi } from '../hooks/useApi.js';
+import { publicUrl } from '../publicUrl.js';
 import { pickLatest } from '../select.js';
 
 const Wrap = styled.main`
@@ -11,9 +12,9 @@ const Wrap = styled.main`
 
 const Hero = styled.section`
   display: grid;
-  grid-template-columns: 1.4fr 0.8fr;
-  gap: 3rem;
-  align-items: end;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 2rem;
+  align-items: center;
   padding-bottom: 2.5rem;
   border-bottom: 1px solid ${(p) => p.theme.line};
 
@@ -50,9 +51,11 @@ const Action = styled(Link)`
 
 const Portrait = styled.img`
   width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  object-position: center 20%;
+  height: auto;
+  align-self: center;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  object-position: center;
   background: ${(p) => p.theme.wash};
 `;
 
@@ -160,8 +163,8 @@ export default function Home() {
           </Actions>
         </div>
         <Portrait
-          src={person.portrait}
-          alt={person.portraitAlt}
+          src={publicUrl(person.hero)}
+          alt={person.heroAlt}
         />
       </Hero>
 
