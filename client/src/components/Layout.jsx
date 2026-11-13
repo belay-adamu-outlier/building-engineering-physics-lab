@@ -148,7 +148,8 @@ const Frame = styled.div`
 const Columns = styled.div`
   display: grid;
   grid-template-columns: minmax(0, 1fr) 260px;
-  gap: 2.75rem;
+  column-gap: 2.75rem;
+  row-gap: 0;
   align-items: start;
 
   @media (max-width: 900px) {

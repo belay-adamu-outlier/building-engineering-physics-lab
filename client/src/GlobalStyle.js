@@ -7,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     margin: 0;
+    overflow-x: hidden;
     background: ${(p) => p.theme.paper};
     color: ${(p) => p.theme.ink};
     font-family: ${(p) => p.theme.sans};

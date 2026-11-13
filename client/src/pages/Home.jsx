@@ -1,42 +1,115 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Status from '../components/Status.jsx';
-import { Kicker, SectionTitle } from '../components/ui.js';
+import { SectionTitle } from '../components/ui.js';
 import { useApi } from '../hooks/useApi.js';
 import { publicUrl } from '../publicUrl.js';
 import { pickLatest } from '../select.js';
 
 const Wrap = styled.main`
+  grid-column: 1;
   padding: 1.75rem 0 2.5rem;
 `;
 
 const Hero = styled.section`
-  display: grid;
-  grid-template-columns: 1fr 1.05fr;
-  gap: 2rem;
-  align-items: center;
-  padding-bottom: 2.5rem;
-  border-bottom: 1px solid ${(p) => p.theme.line};
+  grid-column: 1 / -1;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  width: 100vw;
+  min-height: 34rem;
+  margin-top: 0;
+  margin-left: calc(50% - 50vw);
+  overflow: hidden;
+  color: #ffffff;
+  border-bottom: 4px solid ${(p) => p.theme.red};
+`;
 
-  @media (max-width: 760px) {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
+const Photo = styled.img`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 16%;
+`;
+
+const Shade = styled.div`
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to top,
+      rgba(14, 6, 10, 0.86) 0%,
+      rgba(14, 6, 10, 0.5) 18%,
+      rgba(14, 6, 10, 0) 40%
+    ),
+    linear-gradient(
+      to right,
+      rgba(14, 6, 10, 0.72) 0%,
+      rgba(14, 6, 10, 0.28) 32%,
+      rgba(14, 6, 10, 0) 52%
+    );
+`;
+
+const Copy = styled.div`
+  position: relative;
+  width: min(${(p) => p.theme.max}, calc(100vw - 2.5rem));
+  margin-left: max(
+    1.25rem,
+    calc((100vw - ${(p) => p.theme.max}) / 2)
+  );
+  padding: 2rem 0 1.55rem;
 `;
 
 const Statement = styled.h1`
   margin: 0;
-  max-width: 18ch;
-  color: ${(p) => p.theme.heading};
-  font-size: clamp(1.9rem, 3.4vw, 2.5rem);
-  line-height: 1.15;
+  max-width: 34rem;
+  color: #ffffff;
+  font-size: clamp(1.7rem, 2.4vw, 2.05rem);
+  line-height: 1.12;
+  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.45);
 `;
 
 const Summary = styled.p`
   max-width: 38rem;
-  margin: 1.25rem 0 0;
-  color: ${(p) => p.theme.muted};
-  font-size: 1.08rem;
+  margin: 0.7rem 0 0;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1.02rem;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
+`;
+
+const HeroLinks = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.15rem;
+  margin-top: 1.25rem;
+`;
+
+const Primary = styled(Link)`
+  display: inline-block;
+  padding: 0.55rem 0.85rem;
+  background: ${(p) => p.theme.red};
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+
+  &:hover {
+    background: ${(p) => p.theme.redDark};
+    color: #ffffff;
+  }
+`;
+
+const Quiet = styled(Link)`
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 2px solid #ffffff;
+
+  &:hover {
+    color: #ffffff;
+  }
 `;
 
 const Actions = styled.div`
@@ -47,16 +120,6 @@ const Actions = styled.div`
 
 const Action = styled(Link)`
   font-weight: 700;
-`;
-
-const Portrait = styled.img`
-  width: 100%;
-  height: auto;
-  align-self: center;
-  aspect-ratio: 3 / 2;
-  object-fit: contain;
-  object-position: center;
-  background: ${(p) => p.theme.wash};
 `;
 
 const Block = styled.section`
@@ -147,27 +210,23 @@ export default function Home() {
   const latestPapers = pickLatest(papers.data, 3);
 
   return (
-    <Wrap>
+    <>
       <Hero>
-        <div>
-          <Kicker>
-            {person.personName}
-            {' · '}
-            {person.title}
-          </Kicker>
-          <Statement>{person.statement}</Statement>
-          <Summary>{person.summary}</Summary>
-          <Actions>
-            <Action to="/research">Research themes</Action>
-            <Action to="/contact">Contact the lab</Action>
-          </Actions>
-        </div>
-        <Portrait
+        <Photo
           src={publicUrl(person.hero)}
           alt={person.heroAlt}
         />
+        <Shade aria-hidden="true" />
+        <Copy>
+          <Statement>{person.statement}</Statement>
+          <Summary>{person.summary}</Summary>
+          <HeroLinks>
+            <Primary to="/research">Research themes</Primary>
+            <Quiet to="/contact">Contact the lab</Quiet>
+          </HeroLinks>
+        </Copy>
       </Hero>
-
+      <Wrap>
       <Block>
         <SectionTitle>Research</SectionTitle>
         <Grid>
@@ -205,6 +264,7 @@ export default function Home() {
           <Action to="/publications">All selected papers</Action>
         </Actions>
       </Block>
-    </Wrap>
+      </Wrap>
+    </>
   );
 }
