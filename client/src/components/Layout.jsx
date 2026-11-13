@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import NewsColumn from './NewsColumn.jsx';
 
 const links = [
+  ['/', 'Home', true],
   ['/research', 'Research'],
   ['/people', 'People'],
   ['/publications', 'Publications'],
@@ -198,8 +199,8 @@ export default function Layout() {
             Menu
           </MenuButton>
           <Nav $open={open} aria-label="Primary">
-            {links.map(([to, label]) => (
-              <Item key={to} to={to} onClick={close}>
+            {links.map(([to, label, end]) => (
+              <Item key={to} to={to} end={end} onClick={close}>
                 {label}
               </Item>
             ))}
