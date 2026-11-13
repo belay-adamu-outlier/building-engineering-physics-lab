@@ -1,0 +1,156 @@
+{
+  "profile": {
+    "labName": "Building Engineering Physics Lab",
+    "personName": "Fitsum Tariku",
+    "title": "Professor, P.Eng.",
+    "role": "Professor and Principal Investigator",
+    "unit": "School of Sustainable Energy Engineering",
+    "university": "Simon Fraser University",
+    "campus": "Surrey",
+    "office": "SRYE 5127",
+    "email": "fitsum_tariku@sfu.ca",
+    "phone": "778-782-4381",
+    "portrait": "/fitsum-tariku.jpg",
+    "portraitAlt": "Portrait of Professor Fitsum Tariku",
+    "statement": "How buildings can stay durable, low-carbon, and comfortable as the climate changes.",
+    "summary": "The lab studies materials, envelopes, and whole buildings with experiments and computer models. The aim is practical guidance for net-zero design, and for buildings that remain healthy in hotter, wetter weather.",
+    "bio": [
+      "Fitsum Tariku is a professor in the School of Sustainable Energy Engineering at Simon Fraser University. He joined SFU in May 2025 to build a building engineering physics group. His work joins laboratory measurements with models of heat, air, and moisture, from a single material up to a whole building in a city.",
+      "Before SFU he was at the British Columbia Institute of Technology, where he held a Canada Research Chair in whole-building performance and founded the Building Science master's programs. He is a professional engineer. He earned his PhD in Building Engineering at Concordia University, his master's in Mechanical Engineering at the University of New Brunswick, and his bachelor's at Addis Ababa University."
+    ],
+    "teaching": [
+      "Building physics",
+      "Thermal and moisture performance of envelope systems",
+      "Whole-building performance"
+    ],
+    "education": [
+      "PhD, Building Engineering, Concordia University",
+      "MASc, Mechanical Engineering, University of New Brunswick",
+      "BASc, Mechanical Engineering, Addis Ababa University"
+    ],
+    "programs": [
+      "Master of Engineering in Building Science, founder, BCIT, 2011",
+      "Master of Applied Science in Building Science, founder, BCIT, 2011",
+      "Sustainable Building Science Program, co-developer, UBC, 2012",
+      "Graduate certificates in building energy modeling, co-developer, BCIT, 2017 and 2022"
+    ],
+    "service": [
+      "Associate Editor, Journal of Architectural Engineering (ASCE)",
+      "Editorial board, Energies",
+      "Voting member, ASHRAE committees on moisture, envelopes, and thermal storage",
+      "Canadian participant, IEA EBC Annex 89 on net-zero emission buildings"
+    ],
+    "links": {
+      "faculty": "https://www.sfu.ca/fas/schools/sustainable-energy-engineering/faculty/faculty-members/fitsum-tariku.html",
+      "scholar": "https://scholar.google.com/citations?user=-GZbzPIAAAAJ"
+    }
+  },
+  "research": [
+    {
+      "id": "materials",
+      "number": "01",
+      "title": "Low-carbon materials",
+      "teaser": "Materials that cut carbon without failing in heat or moisture.",
+      "summary": "Measuring and modeling materials that cut the carbon of construction without giving up thermal or moisture performance. Recent work includes hempcrete in mild and cold climates, aging of roof insulation, and a Canada Foundation for Innovation project on low-carbon materials for net-zero buildings. A U.S. patent application for an aerogel-enhanced bio-based material was filed in 2023."
+    },
+    {
+      "id": "envelopes",
+      "number": "02",
+      "title": "High-performance envelopes",
+      "teaser": "Walls and roofs that save energy and still dry out.",
+      "summary": "How walls and roofs move heat, air, and moisture in real weather. The group studies rainscreen cavities, ventilated walls, thermal bridges, highly insulated assemblies, and green roofs on insulated decks. The goal is envelopes that save energy and still dry out."
+    },
+    {
+      "id": "buildings",
+      "number": "03",
+      "title": "Whole-building performance",
+      "teaser": "Energy, durability, and comfort treated as one problem.",
+      "summary": "Connecting the envelope, the indoor environment, and building systems. Projects look at energy use, durability, humidity, and the rising risk of overheating. The lab treats comfort and health as part of performance, not as a check after the energy model is finished."
+    },
+    {
+      "id": "urban",
+      "number": "04",
+      "title": "Urban physics and renewables",
+      "teaser": "Wind, urban heat, and solar built into the envelope.",
+      "summary": "Wind, urban heat, and solar systems built into the envelope. Work includes canopy wind models, urban canopy temperature for energy simulation, and air-based building-integrated photovoltaic/thermal collectors. The question is how a building behaves on a real street, not as an isolated box."
+    }
+  ],
+  "publications": [
+    {
+      "id": "tariku-hemmati-2023",
+      "year": 2023,
+      "authors": "Tariku, F., and Hemmati, F.",
+      "title": "RC-network based thermal bridge calculation method for transient heat transfer analysis in multidimensional building envelope details.",
+      "venue": "Energy and Buildings"
+    },
+    {
+      "id": "nghana-bipv-2023",
+      "year": 2023,
+      "authors": "Nghana, B., Tariku, F., and Bitsuamlak, G.",
+      "title": "Numerical study of the impact of transverse ribs on the energy potential of air-based BIPV/T envelope systems.",
+      "venue": "Energies, 16(14), 5266"
+    },
+    {
+      "id": "tariku-ann-2023",
+      "year": 2023,
+      "authors": "Tariku, F., and Gharib Mombeni, A.",
+      "title": "ANN-based method for urban canopy temperature prediction and building energy simulation with urban heat island effect in consideration.",
+      "venue": "Energies, 16(14), 5335"
+    },
+    {
+      "id": "tariku-roof-2023",
+      "year": 2023,
+      "authors": "Tariku, F., Shang, Y., and Molleti, S.",
+      "title": "Thermal performance of flat roof insulation materials: a review of temperature, moisture and aging effects.",
+      "venue": "Journal of Building Engineering, 76, 107142"
+    },
+    {
+      "id": "tariku-greenroof-2022",
+      "year": 2022,
+      "authors": "Tariku, F., and Hagos, S.",
+      "title": "Performance of a green roof installed on a highly insulated roof deck and the plants' effect: an experimental study.",
+      "venue": "Building and Environment, 221"
+    },
+    {
+      "id": "nghana-ribs-2022",
+      "year": 2022,
+      "authors": "Nghana, B., Tariku, F., and Bitsuamlak, G.",
+      "title": "Numerical assessment of the impact of transverse roughness ribs on turbulent natural convection in a BIPV air channel.",
+      "venue": "Building and Environment, 217",
+      "url": "https://doi.org/10.1016/j.buildenv.2022.109093"
+    },
+    {
+      "id": "awol-canopy-2022",
+      "year": 2022,
+      "authors": "Awol, A., Bitsuamlak, G. T., and Tariku, F.",
+      "title": "A new analytical model for wind flow in canopies.",
+      "venue": "Journal of Wind Engineering and Industrial Aerodynamics, 225, 105003",
+      "url": "https://doi.org/10.1016/j.jweia.2022.105003"
+    },
+    {
+      "id": "shang-hempcrete-2021",
+      "year": 2021,
+      "authors": "Shang, Y., and Tariku, F.",
+      "title": "Hempcrete building performance in mild and cold climates: integrated analysis of carbon footprint, energy, and indoor thermal and moisture buffering.",
+      "venue": "Building and Environment, 206"
+    }
+  ],
+  "news": [
+    {
+      "id": "cfi-2026",
+      "date": "2026-08",
+      "displayDate": "August 2026",
+      "title": "CFI support for low-carbon materials research",
+      "summary": "The Canada Foundation for Innovation awarded John R. Evans Leaders Fund support for a project on low-carbon building materials for net-zero buildings. The award helps equip the lab's materials research at SFU.",
+      "url": "https://www.sfu.ca/fas/news-events/news/2026/08/see-researchers-receive-cfi-s-john-r--evans-leaders-fund.html"
+    },
+    {
+      "id": "joined-sfu-2025",
+      "date": "2025-06-16",
+      "displayDate": "June 16, 2025",
+      "title": "Professor Tariku joins Sustainable Energy Engineering",
+      "summary": "He joined the School of Sustainable Energy Engineering in May 2025 to establish a building engineering physics research group, and to train engineers for low-carbon, climate-ready buildings.",
+      "url": "https://www.sfu.ca/fas/news-events/news/2025/06/meet-fitsum-tariku.html"
+    }
+  ]
+}
