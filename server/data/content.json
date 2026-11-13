@@ -81,35 +81,40 @@
       "year": 2023,
       "authors": "Tariku, F., and Hemmati, F.",
       "title": "RC-network based thermal bridge calculation method for transient heat transfer analysis in multidimensional building envelope details.",
-      "venue": "Energy and Buildings"
+      "venue": "Energy and Buildings",
+      "url": "https://doi.org/10.1016/j.enbuild.2023.113648"
     },
     {
       "id": "nghana-bipv-2023",
       "year": 2023,
       "authors": "Nghana, B., Tariku, F., and Bitsuamlak, G.",
       "title": "Numerical study of the impact of transverse ribs on the energy potential of air-based BIPV/T envelope systems.",
-      "venue": "Energies, 16(14), 5266"
+      "venue": "Energies, 16(14), 5266",
+      "url": "https://www.mdpi.com/1996-1073/16/14/5266"
     },
     {
       "id": "tariku-ann-2023",
       "year": 2023,
       "authors": "Tariku, F., and Gharib Mombeni, A.",
       "title": "ANN-based method for urban canopy temperature prediction and building energy simulation with urban heat island effect in consideration.",
-      "venue": "Energies, 16(14), 5335"
+      "venue": "Energies, 16(14), 5335",
+      "url": "https://www.mdpi.com/1996-1073/16/14/5335"
     },
     {
       "id": "tariku-roof-2023",
       "year": 2023,
       "authors": "Tariku, F., Shang, Y., and Molleti, S.",
       "title": "Thermal performance of flat roof insulation materials: a review of temperature, moisture and aging effects.",
-      "venue": "Journal of Building Engineering, 76, 107142"
+      "venue": "Journal of Building Engineering, 76, 107142",
+      "url": "https://doi.org/10.1016/j.jobe.2023.107142"
     },
     {
       "id": "tariku-greenroof-2022",
       "year": 2022,
       "authors": "Tariku, F., and Hagos, S.",
       "title": "Performance of a green roof installed on a highly insulated roof deck and the plants' effect: an experimental study.",
-      "venue": "Building and Environment, 221"
+      "venue": "Building and Environment, 221",
+      "url": "https://doi.org/10.1016/j.buildenv.2022.109337"
     },
     {
       "id": "nghana-ribs-2022",
@@ -132,7 +137,8 @@
       "year": 2021,
       "authors": "Shang, Y., and Tariku, F.",
       "title": "Hempcrete building performance in mild and cold climates: integrated analysis of carbon footprint, energy, and indoor thermal and moisture buffering.",
-      "venue": "Building and Environment, 206"
+      "venue": "Building and Environment, 206",
+      "url": "https://doi.org/10.1016/j.buildenv.2021.108377"
     }
   ],
   "news": [

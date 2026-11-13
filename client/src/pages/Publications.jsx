@@ -1,6 +1,4 @@
-import { useCallback, useState } from 'react';
 import styled from 'styled-components';
-import PaperModal from '../components/PaperModal.jsx';
 import Status from '../components/Status.jsx';
 import { Kicker, Lead, Page, Title } from '../components/ui.js';
 import { useApi } from '../hooks/useApi.js';
@@ -25,18 +23,12 @@ const Year = styled.p`
   font-weight: 700;
 `;
 
-const Paper = styled.button`
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: none;
+const Paper = styled.a`
   color: ${(p) => p.theme.heading};
-  font: inherit;
   font-size: 1.05rem;
   font-weight: 700;
   line-height: 1.35;
-  text-align: left;
-  cursor: pointer;
+  text-decoration: none;
 
   &:hover {
     color: ${(p) => p.theme.red};
@@ -57,10 +49,6 @@ const Scholar = styled.a`
 export default function Publications() {
   const papers = useApi('/api/publications');
   const profile = useApi('/api/profile');
-  const [openPaper, setOpenPaper] = useState(null);
-  const closePaper = useCallback(() => {
-    setOpenPaper(null);
-  }, []);
 
   if (papers.status === 'loading' || profile.status === 'loading') {
     return <Status>Loading publications.</Status>;
@@ -89,8 +77,9 @@ export default function Publications() {
             <Year>{paper.year}</Year>
             <div>
               <Paper
-                type="button"
-                onClick={() => setOpenPaper(paper)}
+                href={paper.url}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 {paper.title}
               </Paper>
@@ -100,7 +89,6 @@ export default function Publications() {
           </Row>
         ))}
       </div>
-      <PaperModal paper={openPaper} onClose={closePaper} />
     </Page>
   );
 }

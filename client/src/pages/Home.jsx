@@ -1,7 +1,5 @@
-import { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import PaperModal from '../components/PaperModal.jsx';
 import Status from '../components/Status.jsx';
 import { Kicker, SectionTitle } from '../components/ui.js';
 import { useApi } from '../hooks/useApi.js';
@@ -101,17 +99,13 @@ const CardText = styled.p`
   color: ${(p) => p.theme.muted};
 `;
 
-const ItemTitle = styled.button`
+const ItemTitle = styled.a`
+  display: inline-block;
   margin: 0 0 0.25rem;
-  padding: 0;
-  border: 0;
-  background: none;
   color: ${(p) => p.theme.heading};
-  font: inherit;
   font-size: 1.05rem;
   font-weight: 700;
-  text-align: left;
-  cursor: pointer;
+  text-decoration: none;
 
   &:hover {
     color: ${(p) => p.theme.red};
@@ -135,10 +129,6 @@ export default function Home() {
   const profile = useApi('/api/profile');
   const research = useApi('/api/research');
   const papers = useApi('/api/publications');
-  const [openPaper, setOpenPaper] = useState(null);
-  const closePaper = useCallback(() => {
-    setOpenPaper(null);
-  }, []);
   const states = [profile, research, papers];
   const pending = states.some((item) => item.status === 'loading');
   const failed = states.find((item) => item.status === 'error');
@@ -194,8 +184,9 @@ export default function Home() {
           {latestPapers.map((paper) => (
             <article key={paper.id}>
               <ItemTitle
-                type="button"
-                onClick={() => setOpenPaper(paper)}
+                href={paper.url}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 {paper.title}
               </ItemTitle>
@@ -211,7 +202,6 @@ export default function Home() {
           <Action to="/publications">All selected papers</Action>
         </Actions>
       </Block>
-      <PaperModal paper={openPaper} onClose={closePaper} />
     </Wrap>
   );
 }
