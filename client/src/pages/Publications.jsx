@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import Banner from '../components/Banner.jsx';
 import Status from '../components/Status.jsx';
-import { Kicker, Lead, Page, Title } from '../components/ui.js';
+import { Page } from '../components/ui.js';
 import { useApi } from '../hooks/useApi.js';
 import { pickLatest } from '../select.js';
 
@@ -45,30 +46,21 @@ const Scholar = styled.a`
   font-weight: 700;
 `;
 
-/** Selected publications, newest first. */
-export default function Publications() {
-  const papers = useApi('/api/publications');
-  const profile = useApi('/api/profile');
+const Lead = styled.p`
+  max-width: 40rem;
+  margin: 0 0 0.4rem;
+  color: ${(p) => p.theme.heading};
+  font-size: 1.05rem;
+`;
 
-  if (papers.status === 'loading' || profile.status === 'loading') {
-    return <Status>Loading publications.</Status>;
-  }
-  if (papers.status === 'error' || profile.status === 'error') {
-    return <Status>Could not load this page.</Status>;
-  }
-
-  const ordered = pickLatest(papers.data, papers.data.length);
-
+function paperList(papers, scholar) {
+  const ordered = pickLatest(papers, papers.length);
   return (
-    <Page>
-      <Kicker>Publications</Kicker>
-      <Title>Selected papers</Title>
+    <>
       <Lead>
         A short list of recent work. The full record is on
         {' '}
-        <Scholar href={profile.data.links.scholar}>
-          Google Scholar
-        </Scholar>
+        <Scholar href={scholar}>Google Scholar</Scholar>
         .
       </Lead>
       <div>
@@ -89,6 +81,43 @@ export default function Publications() {
           </Row>
         ))}
       </div>
-    </Page>
+    </>
+  );
+}
+
+/** Selected publications, newest first. */
+export default function Publications() {
+  const papers = useApi('/api/publications');
+  const profile = useApi('/api/profile');
+  const loading = papers.status === 'loading'
+    || profile.status === 'loading';
+  const failed = papers.status === 'error'
+    || profile.status === 'error';
+  const ready = papers.status === 'ready'
+    && profile.status === 'ready';
+
+  return (
+    <>
+      <Banner
+        kicker="Publications"
+        title="Selected papers"
+        summary={
+          'Recent work on materials, envelopes, and '
+          + 'whole buildings.'
+        }
+      />
+      <Page>
+        {loading ? <Status>Loading publications.</Status> : null}
+        {failed ? (
+          <Status>Could not load this page.</Status>
+        ) : null}
+        {ready
+          ? paperList(
+            papers.data,
+            profile.data.links.scholar,
+          )
+          : null}
+      </Page>
+    </>
   );
 }

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import Banner from '../components/Banner.jsx';
 import Status from '../components/Status.jsx';
-import { Kicker, Page, Title } from '../components/ui.js';
+import { Page } from '../components/ui.js';
 import { useApi } from '../hooks/useApi.js';
 import { sortByDateDesc } from '../select.js';
 
@@ -34,24 +35,9 @@ const Source = styled.a`
   font-weight: 700;
 `;
 
-/** News items, newest first. */
-export default function News() {
-  const news = useApi('/api/news');
-
-  if (news.status === 'loading') {
-    return <Status>Loading news.</Status>;
-  }
-  if (news.status === 'error') {
-    return <Status>{news.error}</Status>;
-  }
-
-  const items = sortByDateDesc(news.data);
-
+function newsList(items) {
   return (
-    <Page>
-      <Kicker>News</Kicker>
-      <Title>Lab news</Title>
-      <div>
+    <div>
         {items.map((item) => (
           <Card key={item.id} id={item.id}>
             <When>{item.displayDate}</When>
@@ -62,7 +48,33 @@ export default function News() {
             ) : null}
           </Card>
         ))}
-      </div>
-    </Page>
+    </div>
+  );
+}
+
+/** News items, newest first. */
+export default function News() {
+  const news = useApi('/api/news');
+  const loading = news.status === 'loading';
+  const failed = news.status === 'error';
+
+  return (
+    <>
+      <Banner
+        kicker="News"
+        title="Lab news"
+        summary={
+          'Notes from the group, from new funding to '
+          + 'new colleagues.'
+        }
+      />
+      <Page>
+        {loading ? <Status>Loading news.</Status> : null}
+        {failed ? <Status>{news.error}</Status> : null}
+        {news.status === 'ready'
+          ? newsList(sortByDateDesc(news.data))
+          : null}
+      </Page>
+    </>
   );
 }

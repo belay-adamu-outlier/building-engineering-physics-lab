@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import Banner from '../components/Banner.jsx';
 import Status from '../components/Status.jsx';
-import { Kicker, Lead, Page, Title } from '../components/ui.js';
+import { Page } from '../components/ui.js';
 import { useApi } from '../hooks/useApi.js';
 
 const Theme = styled.article`
@@ -27,34 +28,39 @@ const Text = styled.p`
   color: ${(p) => p.theme.muted};
 `;
 
+function themeList(themes) {
+  return themes.map((theme) => (
+    <Theme key={theme.id} id={theme.id}>
+      <Number>{theme.number}</Number>
+      <Heading>{theme.title}</Heading>
+      <Text>{theme.summary}</Text>
+    </Theme>
+  ));
+}
+
 /** Four research themes from the API. */
 export default function Research() {
   const research = useApi('/api/research');
-
-  if (research.status === 'loading') {
-    return <Status>Loading research.</Status>;
-  }
-  if (research.status === 'error') {
-    return <Status>{research.error}</Status>;
-  }
+  const loading = research.status === 'loading';
+  const failed = research.status === 'error';
 
   return (
-    <Page>
-      <Kicker>Research</Kicker>
-      <Title>What the lab works on</Title>
-      <Lead>
-        Four themes cover the path from a material sample
-        to a building on a city street.
-      </Lead>
-      <div>
-        {research.data.map((theme) => (
-          <Theme key={theme.id} id={theme.id}>
-            <Number>{theme.number}</Number>
-            <Heading>{theme.title}</Heading>
-            <Text>{theme.summary}</Text>
-          </Theme>
-        ))}
-      </div>
-    </Page>
+    <>
+      <Banner
+        kicker="Research"
+        title="What the lab works on"
+        summary={
+          'Four themes cover the path from a material '
+          + 'sample to a building on a city street.'
+        }
+      />
+      <Page>
+        {loading ? <Status>Loading research.</Status> : null}
+        {failed ? <Status>{research.error}</Status> : null}
+        {research.status === 'ready'
+          ? themeList(research.data)
+          : null}
+      </Page>
+    </>
   );
 }

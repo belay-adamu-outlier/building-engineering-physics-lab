@@ -12,6 +12,8 @@ test('seed content has the lab profile and four themes', () => {
   assert.ok(content.profile.portrait);
   assert.ok(content.profile.hero);
   assert.ok(content.profile.heroAlt);
+  assert.ok(content.profile.group);
+  assert.ok(content.profile.groupAlt);
   assert.equal(content.research.length, 4);
   content.research.forEach((theme) => {
     assert.ok(theme.teaser);

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import Banner from '../components/Banner.jsx';
 import Status from '../components/Status.jsx';
-import { Kicker, Page, Title } from '../components/ui.js';
+import { Page } from '../components/ui.js';
 import { useApi } from '../hooks/useApi.js';
 import { publicUrl } from '../publicUrl.js';
 
@@ -22,8 +23,13 @@ const Portrait = styled.img`
   object-position: center 20%;
 `;
 
+const Name = styled.h2`
+  margin: 0 0 0.7rem;
+  font-size: 1.45rem;
+`;
+
 const Role = styled.p`
-  margin: 0.8rem 0 0;
+  margin: 0.35rem 0 0;
   font-weight: 700;
 `;
 
@@ -49,24 +55,9 @@ const List = styled.ul`
   color: ${(p) => p.theme.muted};
 `;
 
-/** Principal investigator profile. */
-export default function People() {
-  const profile = useApi('/api/profile');
-
-  if (profile.status === 'loading') {
-    return <Status>Loading people.</Status>;
-  }
-  if (profile.status === 'error') {
-    return <Status>{profile.error}</Status>;
-  }
-
-  const person = profile.data;
-
+function profileBody(person) {
   return (
-    <Page>
-      <Kicker>People</Kicker>
-      <Title>{person.personName}</Title>
-      <LayoutGrid>
+    <LayoutGrid>
         <div>
           <Portrait
             src={publicUrl(person.portrait)}
@@ -77,6 +68,7 @@ export default function People() {
           <Muted>{person.university}</Muted>
         </div>
         <div>
+          <Name>{person.personName}</Name>
           {person.bio.map((paragraph) => (
             <Prose key={paragraph}>{paragraph}</Prose>
           ))}
@@ -108,7 +100,33 @@ export default function People() {
             ))}
           </List>
         </div>
-      </LayoutGrid>
-    </Page>
+    </LayoutGrid>
+  );
+}
+
+/** Principal investigator profile. */
+export default function People() {
+  const profile = useApi('/api/profile');
+  const loading = profile.status === 'loading';
+  const failed = profile.status === 'error';
+
+  return (
+    <>
+      <Banner
+        kicker="People"
+        title="The lab group"
+        summary={
+          'Professor Fitsum Tariku with graduates of the '
+          + 'building science programs he founded.'
+        }
+      />
+      <Page>
+        {loading ? <Status>Loading people.</Status> : null}
+        {failed ? <Status>{profile.error}</Status> : null}
+        {profile.status === 'ready'
+          ? profileBody(profile.data)
+          : null}
+      </Page>
+    </>
   );
 }

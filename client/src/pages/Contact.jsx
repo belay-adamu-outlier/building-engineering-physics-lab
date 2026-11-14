@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import Banner from '../components/Banner.jsx';
 import Status from '../components/Status.jsx';
-import { Kicker, Page, Title } from '../components/ui.js';
+import { Page } from '../components/ui.js';
 import { useApi } from '../hooks/useApi.js';
 import { mailLink } from '../mailLink.js';
 
@@ -119,14 +120,8 @@ export default function Contact() {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
 
-  if (profile.status === 'loading') {
-    return <Status>Loading contact details.</Status>;
-  }
-  if (profile.status === 'error') {
-    return <Status>{profile.error}</Status>;
-  }
-
-  const person = profile.data;
+  const ready = profile.status === 'ready';
+  const person = ready ? profile.data : null;
 
   function update(event) {
     const { name, value } = event.target;
@@ -143,6 +138,9 @@ export default function Contact() {
       if (form.company) {
         setForm(empty);
         setSent(true);
+        return;
+      }
+      if (!person) {
         return;
       }
       if (hosted) {
@@ -172,9 +170,23 @@ export default function Contact() {
   }
 
   return (
-    <Page>
-      <Kicker>Contact</Kicker>
-      <Title>Write to the lab</Title>
+    <>
+      <Banner
+        kicker="Contact"
+        title="Write to the lab"
+        summary={
+          'The lab is in the Sustainable Energy Engineering '
+          + 'building at SFU Surrey.'
+        }
+      />
+      <Page>
+      {profile.status === 'loading' ? (
+        <Status>Loading contact details.</Status>
+      ) : null}
+      {profile.status === 'error' ? (
+        <Status>{profile.error}</Status>
+      ) : null}
+      {ready ? (
       <Split>
         <Facts>
           <Term>Email</Term>
@@ -259,6 +271,8 @@ export default function Contact() {
           </Button>
         </Form>
       </Split>
-    </Page>
+      ) : null}
+      </Page>
+    </>
   );
 }

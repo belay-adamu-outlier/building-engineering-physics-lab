@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Page = styled.main`
+  grid-column: 1;
   padding: 1.75rem 0 2.5rem;
 `;
 
