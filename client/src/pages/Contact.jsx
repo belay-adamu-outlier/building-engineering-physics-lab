@@ -193,8 +193,6 @@ export default function Contact() {
           <Value>
             <a href={'mailto:' + person.email}>{person.email}</a>
           </Value>
-          <Term>Phone</Term>
-          <Value>{person.phone}</Value>
           <Term>Office</Term>
           <Value>
             {person.office}
