@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import NewsColumn from './NewsColumn.jsx';
+import WallBench from './WallBench.jsx';
 
 const links = [
   ['/', 'Home', true],
@@ -157,6 +158,14 @@ const Columns = styled.div`
   }
 `;
 
+const Rail = styled.div`
+  grid-column: 2;
+
+  @media (max-width: 900px) {
+    grid-column: 1;
+  }
+`;
+
 const Foot = styled.footer`
   background: ${(p) => p.theme.wash};
   border-top: 4px solid ${(p) => p.theme.red};
@@ -173,6 +182,7 @@ const FootInner = styled.div`
 /** Site header, page content, news column, and footer. */
 export default function Layout() {
   const [open, setOpen] = useState(false);
+  const research = useLocation().pathname === '/research';
 
   function close() {
     setOpen(false);
@@ -211,7 +221,10 @@ export default function Layout() {
       <Frame>
         <Columns>
           <Outlet />
-          <NewsColumn />
+          <Rail>
+            <NewsColumn />
+            {research ? <WallBench /> : null}
+          </Rail>
         </Columns>
       </Frame>
       <Foot>
